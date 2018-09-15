@@ -1,0 +1,6 @@
+<!--
+ - Created by umair on 9/15/18.
+ -->
+
+<aura:component description="expenseItem">
+</aura:component>
