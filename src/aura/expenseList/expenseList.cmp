@@ -1,0 +1,14 @@
+<!--
+ - Created by umair on 9/15/18.
+ -->
+
+<aura:component description="expenseList">
+    <aura:attribute name="expense" type="Expense__c"/>
+    <lightning:card title="Expenses">
+        <p class="slds-p-horizontal--small">
+            <aura:iteration items="{!v.expneses}" var="expense">
+                <c:expenseItem expense="{!expnese}"/>
+            </aura:iteration>
+        </p>
+    </lightning:card>
+</aura:component>
