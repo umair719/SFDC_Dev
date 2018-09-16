@@ -1,7 +1,64 @@
-<aura:component >
-    <ol>
-        <li>Bug Spray</li>
-        <li>Bear Repellant</li>
-        <li>Goat Food</li>
-    </ol>
+<aura:component>
+    <aura:attribute name="items" type="Camping_Item__c[]"/>
+    <aura:attribute name="newItem" type="Camping_Item__c"
+                    default="{'sobject': 'Camping_Item__c',
+                                'Name' : '',
+                                'Quantity__c' : 0,
+                                'Price__c': 0,
+                                'Packed__c': false}"/>
+
+    <lightning:layout>
+        <lightning:layoutItem padding="around-small" size="6">
+            <!--CREATE NEW EXPENSE-->
+            <div aria-labelledby="newcampingitemform">
+                <!--BOXED AREA-->
+                <fieldset class="slds-box slds-theme--default slds-container--small">
+                    <legend id="newcampingitemform" class="slds-text-heading--small">
+                        Add Camping Item
+                    </legend>
+                    <!--CREATE NEW CAMPING ITEM FROM-->
+                    <form class="slds-form--stacked">
+                        <lightning:input aura:id="campingitemform" label="Name"
+                                         name="campingitemname"
+                                         value="{!v.newItem.Name}"
+                                         required="true"/>
+                        <lightning:input aura:id="campingitemform" label="Quantity"
+                                         type="number"
+                                         min="1"
+                                         step="1"
+                                         messageWhenRangeUnderflow="Enter an amount at least 1"
+                                         name="campingitemquantity"
+                                         value="{!v.newItem.Quantity__c}"
+                                         required="true"/>
+                        <lightning:input aura:id="campingitemform" label="Price"
+                                         type="number"
+                                         name="campingitemprice"
+                                         value="{!v.newItem.Price__c}"
+                                         min="0.1"
+                                         formatter="currency"
+                                         step="0.01"
+                                         messageWhenRangeUnderflow="Enter an amount that's at least $0.10."
+                                         required="true"/>
+                        <lightning:input aura:id="campingitemform" label="Packed"
+                                         type="checkbox"
+                                         name="campingitempacked"
+                                         checked="{!v.newItem.Packed__c}"/>
+                        <lightning:button label="Create Item"
+                                          class="slds-m-top--medium"
+                                          variant="brand"
+                                          onclick="{!c.clickCreateItem}"/>
+                    </form>
+                </fieldset>
+            </div>
+        </lightning:layoutItem>
+
+    </lightning:layout>
+
+    <lightning:card title="Camping Items">
+        <p class="slds-p-horizontal--small">
+            <aura:iteration items="{!v.items}" var="item">
+                <c:campingListItem item="{!item}"/>
+            </aura:iteration>
+        </p>
+    </lightning:card>
 </aura:component>
