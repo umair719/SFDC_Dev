@@ -2,6 +2,22 @@
  * Created by umair on 9/13/18.
  */
 ({
+    // Load expenses from Salesfroce
+    doInit: function (component, event, helper) {
+        // Crate the action
+        var action = component.get("c.getExpenses");
+        // Add callback behavior for when response is recieved
+        action.setCallback(this, function (response) {
+            var state = response.getState();
+            if (state === 'SUCCESS') {
+                component.set("v.expenses", response.getReturnValue());
+            } else {
+                console.log("Failed with state: " + state);
+            }
+        });
+        // Send action off to be executed
+        $A.enqueueAction(action);
+    },
     clickCreate: function (component, event, helper) {
         var validExpense = component.find('expenseform').reduce(function (validSoFar, inputCmp) {
             // Display error message for invalid fields
