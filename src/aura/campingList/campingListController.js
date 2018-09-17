@@ -20,6 +20,13 @@
             console.log("Item after 'create': " + JSON.stringify(theItems));
             component.set("v.items", theItems);
             //createItem(component, newItem);
+            component.set("v.newItem", {
+                'sobjectType': 'Camping_Item__c',
+                'Name': '',
+                'Quantity__c': 0,
+                'Price__c': 0,
+                'Packed__c': false
+            });
         }
     } // ,
     // createItem: function (component, item) {
