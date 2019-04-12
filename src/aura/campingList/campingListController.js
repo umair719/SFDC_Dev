@@ -24,12 +24,13 @@
             inputCmp.showHelpMessageIfInvalid();
             return validSoFar && inputCmp.get('v.validity').valid;
         }, true);
-
+        
         if (validItem) {
             // Create the new item
             var newItem = component.get('v.newItem');
             console.log('Create Item: ' + JSON.stringify(newItem));
             helper.createItem(component, newItem);
+
         }
     }
 })

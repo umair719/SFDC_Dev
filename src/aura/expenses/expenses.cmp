@@ -77,4 +77,5 @@
             <!-- / CREATE NEW EXPENSE -->
         </lightning:layoutItem>
     </lightning:layout>
+    <c:expenseList expense="{!v.expenses}"/>
 </aura:component>

@@ -2,7 +2,7 @@
  * Created by umair on 2018-12-25.
  */
 
-public with sharing class EmailManager {
+public without sharing class EmailManager {
     //Public Method
     public static void sendMail(String address, String subject, String body) {
         // Create an email message object

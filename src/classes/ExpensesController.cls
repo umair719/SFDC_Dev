@@ -7,18 +7,18 @@ public with sharing class ExpensesController {
     @AuraEnabled
     public static List<Expense__c> getExpenses() {
         // Check to make sure all fields are accessible to this user
-        String[] fieldsToCheck = new String[]{
-                'Id', 'Name', 'Amount__c', 'Client__c', 'Date__c',
-                'Reimbursed__c', 'CreateDate'
-        };
-
-        Map<String, Schema.SObjectField> fieldDescribleTokens = Schema.SObjectType.Expense__c.fields.getMap();
-
-        for (String field : fieldsToCheck) {
-            if (!fieldDescribleTokens.get(field).getDescribe().isAccessible()) {
-                throw new System.NoAccessException();
-            }
-        }
+//        String[] fieldsToCheck = new String[]{
+//                'Id', 'Name', 'Amount__c', 'Client__c', 'Date__c',
+//                'Reimbursed__c', 'CreateDate'
+//        };
+//
+//        Map<String, Schema.SObjectField> fieldDescribleTokens = Schema.SObjectType.Expense__c.fields.getMap();
+//
+//        for (String field : fieldsToCheck) {
+//            if (!fieldDescribleTokens.get(field).getDescribe().isAccessible()) {
+//                throw new System.NoAccessException();
+//            }
+//        }
 
         // OK, this user can access all the fields
         return [
@@ -30,6 +30,7 @@ public with sharing class ExpensesController {
     @AuraEnabled
     public static Expense__c saveExpense(Expense__c expense) {
         // Perform isUpdatable() checking first, then
+        //TODO: Fix issue with saving, returing ERROR
         upsert expense;
         return expense;
     }

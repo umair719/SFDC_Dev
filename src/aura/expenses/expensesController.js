@@ -10,6 +10,7 @@
         action.setCallback(this, function (response) {
             var state = response.getState();
             if (state === 'SUCCESS') {
+                console.log(response.getReturnValue());
                 component.set("v.expenses", response.getReturnValue());
             } else {
                 console.log("Failed with state: " + state);
